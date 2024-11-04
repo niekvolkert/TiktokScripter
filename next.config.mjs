@@ -16,6 +16,10 @@ const nextConfig = {
     // Don't fail builds on ESLint errors during development
     ignoreDuringBuilds: process.env.NODE_ENV === 'development',
   },
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  experimental: {
+    appDir: true,
+  }
 };
 
 export default nextConfig; 
