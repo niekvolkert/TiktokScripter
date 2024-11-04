@@ -1,0 +1,190 @@
+Viral Social Ad Script Generation Tool
+You are a full-stack developer working on a Social Ad Script Generation Tool using Next.js for the frontend and Node.js/Express for additional backend services. This platform allows users to analyze social media ads (e.g., TikTok videos) and generate viral-worthy scripts. The project includes a marketing website with access restricted by a login/paywall and an interactive dashboard where users can manage products and generate scripts.
+
+Project Architecture
+The project will have the following main sections:
+
+Marketing Website: A public-facing website for showcasing the product’s features, pricing, testimonials, and a call to action for sign-ups. Authentication and paywall functionality are integrated to allow users to log in to access the tool.
+
+Application with Dashboard and Paywalled Content:
+
+Onboarding: After logging in, users are guided through onboarding to create their first product with fields for:
+Product Name
+Unique Features
+Target Group
+Signup URL
+Dashboard: Central hub for accessing all functionality, displaying a “Create Script” button in the top-right corner for easy access.
+Product Management Page: Allows users to view, edit, and manage products with the same fields used during onboarding.
+Script Generation Page: Users can paste a TikTok URL and select a product from a dropdown list to generate a script. After submission, display a loading indicator while processing the video.
+Code Style and Structure
+Frontend: Use Next.js with React functional components and hooks (useState, useEffect) for managing state.
+API Routes: Use Next.js API routes in the pages/api directory for managing backend logic such as authentication, product management, and script generation requests.
+Database: MongoDB for storing user data, products, and generated scripts.
+Styling: Tailwind CSS for responsive and mobile-first design.
+State Management: Use React Context API or custom hooks for managing global state.
+Folder Structure
+Root Directory:
+
+.cursorrules – Custom rules for Cursor AI.
+.env – Store environment variables, including API keys and MongoDB connection strings.
+Frontend Directory (src/):
+
+📦 root
+├── .env.local
+├── .gitignore
+├── next.config.mjs
+├── package.json
+├── postcss.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+├── middleware.ts
+│
+├── 📂 public/
+│   ├── 📂 images/
+│   │   └── logo.svg
+│   └── favicon.ico
+│
+├── 📂 src/
+│   ├── 📂 app/
+│   │   ├── layout.tsx                # Root layout
+│   │   ├── page.tsx                  # Home page (marketing)
+│   │   ├── error.tsx                 # Global error boundary
+│   │   ├── not-found.tsx            # Global 404
+│   │   ├── loading.tsx              # Global loading
+│   │   ├── template.tsx             # Root template
+│   │   │
+│   │   ├── 📂 (auth)/
+│   │   │   ├── login/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── @modal/
+│   │   │   │       └── default.tsx   # Parallel route for modal
+│   │   │   ├── register/
+│   │   │   │   └── page.tsx
+│   │   │   ├── forgot-password/
+│   │   │   │   └── page.tsx
+│   │   │   └── layout.tsx
+│   │   │
+│   │   ├── 📂 (marketing)/
+│   │   │   ├── pricing/
+│   │   │   │   └── page.tsx
+│   │   │   ├── about/
+│   │   │   │   └── page.tsx
+│   │   │   └── layout.tsx
+│   │   │
+│   │   ├── 📂 (dashboard)/
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx
+│   │   │   │
+│   │   │   ├── 📂 products/
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── loading.tsx
+│   │   │   │   ├── error.tsx
+│   │   │   │   ├── not-found.tsx
+│   │   │   │   └── [id]/
+│   │   │   │       └── page.tsx
+│   │   │   │
+│   │   │   └── 📂 scripts/
+│   │   │       ├── page.tsx
+│   │   │       ├── loading.tsx
+│   │   │       ├── error.tsx
+│   │   │       └── [id]/
+│   │   │           └── page.tsx
+│   │   │
+│   │   └── 📂 api/
+│   │       ├── 📂 auth/
+│   │       │   └── [...nextauth]/
+│   │       │       └── route.ts
+│   │       ├── 📂 products/
+│   │       │   ├── route.ts
+│   │       │   └── [id]/
+│   │       │       └── route.ts
+│   │       └── 📂 scripts/
+│   │           ├── route.ts
+│   │           └── [id]/
+│   │               └── route.ts
+│   │
+│   ├── 📂 components/
+│   │   ├── 📂 ui/                    # shadcn/ui components
+│   │   │   ├── button.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   └── form.tsx
+│   │   │
+│   │   ├── 📂 auth/
+│   │   │   ├── auth-form.tsx
+│   │   │   └── user-button.tsx
+│   │   │
+│   │   ├── 📂 dashboard/
+│   │   │   ├── nav.tsx
+│   │   │   ├── header.tsx
+│   │   │   └── sidebar.tsx
+│   │   │
+│   │   ├── 📂 products/
+│   │   │   ├── product-card.tsx
+│   │   │   ├── product-form.tsx
+│   │   │   └── product-list.tsx
+│   │   │
+│   │   ├── 📂 scripts/
+│   │   │   ├── script-generator.tsx
+│   │   │   └── script-preview.tsx
+│   │   │
+│   │   └── 📂 marketing/
+│   │       ├── pricing-table.tsx
+│   │       └── feature-list.tsx
+│   │
+│   ├── 📂 lib/
+│   │   ├── 📂 actions/              # Server Actions
+│   │   │   ├── products.ts
+│   │   │   └── scripts.ts
+│   │   │
+│   │   ├── 📂 auth/
+│   │   │   └── auth.ts
+│   │   │
+│   │   ├── 📂 db/                   # Database utilities
+│   │   │   └── index.ts
+│   │   │
+│   │   └── utils.ts
+│   │
+│   ├── 📂 types/
+│   │   ├── index.d.ts
+│   │   └── next-auth.d.ts
+│   │
+│   ├── 📂 config/
+│   │   ├── site.ts
+│   │   └── nav.ts
+│   │
+│   └── 📂 styles/
+│       └── globals.css
+│
+├── 📂 prisma/                        # Database ORM
+│   ├── schema.prisma
+│   └── migrations/
+│
+├── 📂 scripts/                       # Build/deployment scripts
+│   └── seed.ts
+│
+└── 📂 tests/
+    ├── 📂 integration/
+    │   └── api.test.ts
+    └── 📂 unit/
+        └── components.test.ts
+
+
+Naming Conventions
+Components: Use PascalCase for React components (e.g., Dashboard, ScriptGenerator).
+Variables: Use camelCase for variables and functions.
+Files: Name files in kebab-case (e.g., product-manager.js).
+API Integration and Authentication
+Use JWT Authentication for secure login and access control.
+Use environment variables for sensitive data (e.g., API keys).
+Add error handling for API calls to manage loading and error states.
+Frontend UI/UX Requirements
+Onboarding: Simple, linear form with fields for product creation.
+Dashboard: Central access to all features, with the “Create Script” CTA button on the top-right.
+Loading Indicator: Display a loading spinner in the script generation page while processing the video.
+Notifications: Show success and error notifications for actions like saving products and generating scripts.
+Error Handling and Debugging
+Log errors on the backend with a dedicated error handler.
+Validate fields in responses from Vertex AI and OpenAI to handle incomplete data.
+Use placeholders for missing data on the frontend to ensure a smooth user experience.
+This .cursorrules file is configured to guide Cursor AI in providing code suggestions aligned with the Next.js and Node.js architecture, maintaining a clear project structure, coding standards, and best practices for handling authentication, paywalls, and data processing with external APIs.
