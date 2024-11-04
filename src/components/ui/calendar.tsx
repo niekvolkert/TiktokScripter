@@ -9,6 +9,34 @@ import { buttonVariants } from "@/components/ui/button"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
+// Custom navigation component
+function CustomNav({ onPreviousClick, onNextClick }: any) {
+  return (
+    <div className="space-x-1 flex items-center">
+      <button
+        type="button"
+        onClick={onPreviousClick}
+        className={cn(
+          buttonVariants({ variant: "outline" }),
+          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute left-1"
+        )}
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </button>
+      <button
+        type="button"
+        onClick={onNextClick}
+        className={cn(
+          buttonVariants({ variant: "outline" }),
+          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 absolute right-1"
+        )}
+      >
+        <ChevronRight className="h-4 w-4" />
+      </button>
+    </div>
+  )
+}
+
 function Calendar({
   className,
   classNames,
@@ -25,12 +53,6 @@ function Calendar({
         caption: "flex justify-center pt-1 relative items-center",
         caption_label: "text-sm font-medium",
         nav: "space-x-1 flex items-center",
-        nav_button: cn(
-          buttonVariants({ variant: "outline" }),
-          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
-        ),
-        nav_button_previous: "absolute left-1",
-        nav_button_next: "absolute right-1",
         table: "w-full border-collapse space-y-1",
         head_row: "flex",
         head_cell:
@@ -52,17 +74,14 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: (props: { className?: string; disabled?: boolean; size?: number }) => (
-          <ChevronLeft className={cn("h-4 w-4", props.className)} />
-        ),
-        IconRight: (props: { className?: string; disabled?: boolean; size?: number }) => (
-          <ChevronRight className={cn("h-4 w-4", props.className)} />
-        ),
+        // Override the Nav component to use custom icons
+        Nav: CustomNav,
       }}
       {...props}
     />
   )
 }
+
 Calendar.displayName = "Calendar"
 
 export { Calendar }
