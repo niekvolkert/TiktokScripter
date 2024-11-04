@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { CreateScriptDialog } from '@/components/dashboard/create-script-dialog.tsx'
-import { DashboardContent } from '@/components/dashboard/dashboard-content.tsx'
+import { CreateScriptDialog } from '@/components/dashboard/create-script-dialog'
+import { DashboardContent } from '@/components/dashboard/dashboard-content'
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState('dashboard')

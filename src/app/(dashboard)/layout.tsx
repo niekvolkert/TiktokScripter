@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Sidebar } from '@/components/layout/sidebar.tsx'
+import { Sidebar } from '@/components/layout/sidebar'
 
 export default function DashboardLayout({
   children,
