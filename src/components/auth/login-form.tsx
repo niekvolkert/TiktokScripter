@@ -50,7 +50,7 @@ export function LoginForm() {
         <CardFooter className="flex flex-col space-y-4">
           <Button type="submit" className="w-full">Login</Button>
           <p className="text-sm text-center text-muted-foreground">
-            Don't have an account? <Link href="/register" className="text-primary hover:underline">Register here</Link>
+            Don&apos;t have an account? <Link href="/register" className="text-primary hover:underline">Register here</Link>
           </p>
         </CardFooter>
       </form>

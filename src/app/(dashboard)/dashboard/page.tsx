@@ -5,7 +5,7 @@ import { CreateScriptDialog } from '@/components/dashboard/create-script-dialog'
 import { DashboardContent } from '@/components/dashboard/dashboard-content'
 
 export default function DashboardPage() {
-  const [activeTab, setActiveTab] = useState('dashboard')
+  const [activeTab] = useState("overview");
 
   const renderContent = () => {
     switch (activeTab) {

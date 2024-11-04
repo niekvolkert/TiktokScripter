@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
 import { CreateScriptDialog } from './create-script-dialog'
 
 export function DashboardHeader() {
