@@ -1,3 +1,5 @@
+'use client'
+
 import { StatsCard } from './stats-card'
 import { FileText, Package } from 'lucide-react'
 
