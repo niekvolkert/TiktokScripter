@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import { CreateScriptDialog } from '@/components/dashboard/create-script-dialog'
 import { DashboardContent } from '@/components/dashboard/dashboard-content'
+import { ScriptsContent } from '@/components/dashboard/scripts-content'
 
 export default function DashboardPage() {
-  const [activeTab] = useState("overview");
+  const [activeTab, setActiveTab] = useState('dashboard')
 
   const renderContent = () => {
     switch (activeTab) {
@@ -14,7 +15,7 @@ export default function DashboardPage() {
       case 'products':
         return <div>Product Management Page (To be implemented)</div>
       case 'scripts':
-        return <div>Script Generation Page (To be implemented)</div>
+        return <ScriptsContent />
       case 'settings':
         return <div>Settings Page (To be implemented)</div>
       default:
@@ -25,8 +26,10 @@ export default function DashboardPage() {
   return (
     <>
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <CreateScriptDialog />
+        <h1 className="text-3xl font-bold">
+          {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
+        </h1>
+        {activeTab === 'scripts' && <CreateScriptDialog />}
       </div>
       {renderContent()}
     </>
