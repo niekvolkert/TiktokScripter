@@ -1,5 +1,6 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Button } from "@/components/ui/button"
@@ -24,12 +25,11 @@ type VideoAnalysis = {
   timeline: TimelineEntry[]
 }
 
-export default function ScriptResultPage() {
+function ScriptResultContent() {
   const searchParams = useSearchParams()
   const [selectedProduct, setSelectedProduct] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
 
-  // Safely type the JSON parse
   const analysis: VideoAnalysis | null = searchParams.get('analysis') 
     ? (JSON.parse(searchParams.get('analysis') as string) as VideoAnalysis)
     : null
@@ -40,7 +40,6 @@ export default function ScriptResultPage() {
     { id: '3', name: 'Laptop Stand' },
   ]
 
-  // Fix the Promise handler
   const handleGenerateScript = () => {
     setIsGenerating(true)
     void (async () => {
@@ -132,5 +131,13 @@ export default function ScriptResultPage() {
         </Card>
       </div>
     </div>
+  )
+}
+
+export default function ScriptResultPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ScriptResultContent />
+    </Suspense>
   )
 }
