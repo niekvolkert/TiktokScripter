@@ -29,9 +29,9 @@ export default function ScriptResultPage() {
   const [selectedProduct, setSelectedProduct] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
 
-  // Fix the any type assignment
+  // Safely type the JSON parse
   const analysis: VideoAnalysis | null = searchParams.get('analysis') 
-    ? JSON.parse(searchParams.get('analysis') as string) 
+    ? (JSON.parse(searchParams.get('analysis') as string) as VideoAnalysis)
     : null
 
   const products = [

@@ -11,7 +11,7 @@ interface SidebarProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
   const pathname = usePathname()
 
   return (
@@ -27,7 +27,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
         </div>
       </div>
       <nav className="space-y-2 flex-grow">
-      <Button
+        <Button
           variant={pathname === '/dashboard' ? 'secondary' : 'ghost'}
           className="w-full justify-start"
           asChild

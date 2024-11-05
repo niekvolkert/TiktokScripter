@@ -14,7 +14,9 @@ export function LoginForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // TODO: Implement login logic
-    console.log('Login submitted', { email, password })
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Login submitted', { email, password })
+    }
   }
 
   return (
