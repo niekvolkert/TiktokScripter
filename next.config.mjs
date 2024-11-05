@@ -1,11 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost'],
+    domains: [
+      'localhost',
+      process.env.VERCEL_URL ? `${process.env.VERCEL_URL}` : '',
+    ].filter(Boolean),
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ['localhost:3000']
+      allowedOrigins: [
+        // Development
+        'localhost:3000',
+        // Production - Vercel domains
+        process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+      ].filter(Boolean),
     }
   },
   typescript: {
@@ -14,7 +22,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: process.env.NODE_ENV === 'development',
   },
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx']
 };
 
-export default nextConfig; 
+export default nextConfig;
