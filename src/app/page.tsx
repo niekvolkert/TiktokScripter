@@ -1,10 +1,13 @@
+import { Header } from '@/components/layout/header'
 import { HeroSection } from '@/components/marketing/hero-section'
 import { FeatureCard } from '@/components/marketing/feature-card'
 import { PricingCard } from '@/components/marketing/pricing-card'
+import { Footer } from '@/components/layout/footer'
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
+      <Header />
       <HeroSection />
       
       <section id="features" className="py-20">
@@ -71,6 +74,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }
