@@ -29,9 +29,9 @@ export default function ScriptResultPage() {
   const [selectedProduct, setSelectedProduct] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
 
-  // Parse the analysis data from the query
-  const analysis: VideoAnalysis = searchParams.get('analysis') 
-    ? JSON.parse(searchParams.get('analysis')!) 
+  // Fix the any type assignment
+  const analysis: VideoAnalysis | null = searchParams.get('analysis') 
+    ? JSON.parse(searchParams.get('analysis') as string) 
     : null
 
   const products = [
@@ -40,11 +40,13 @@ export default function ScriptResultPage() {
     { id: '3', name: 'Laptop Stand' },
   ]
 
-  const handleGenerateScript = async () => {
+  // Fix the Promise handler
+  const handleGenerateScript = () => {
     setIsGenerating(true)
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setIsGenerating(false)
-    // Handle script generation based on analysis and selected product
+    void (async () => {
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      setIsGenerating(false)
+    })()
   }
 
   if (!analysis) return null

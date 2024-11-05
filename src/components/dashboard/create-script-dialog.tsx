@@ -14,35 +14,33 @@ export function CreateScriptDialog() {
   const [isLoading, setIsLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsLoading(false)
-    setIsOpen(false)
-    
-    // Navigate to results page with mock analysis data
-    const queryParams = new URLSearchParams({
-      videoUrl: tiktokUrl,
-      analysis: JSON.stringify({
-        summary: "The video shows a woman unboxing and setting up a new monitor. She is excited about her new monitor and can't wait to use it for work. The video is well-lit and has a chill lofi hip-hop beat playing in the background.",
-        timeline: [
-          {
-            timestamp: "00:00-00:05",
-            hook: "A woman is standing in front of a desk with a large box labeled 'monitor upgrade.'",
-            cameraDetails: { movement: "static", angle: "medium shot" },
-            textOverlay: "monitor upgrade",
-            action: "The woman is looking at the box with a surprised expression."
-          },
-          // Additional timeline entries would go here
-        ]
-      })
-    }).toString()
-    
-    router.push(`/dashboard/script-result?${queryParams}`)
+    void (async () => {
+      setIsLoading(true)
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      setIsLoading(false)
+      setIsOpen(false)
+      
+      const queryParams = new URLSearchParams({
+        videoUrl: tiktokUrl,
+        analysis: JSON.stringify({
+          summary: "The video shows a woman unboxing and setting up a new monitor. She is excited about her new monitor and can't wait to use it for work. The video is well-lit and has a chill lofi hip-hop beat playing in the background.",
+          timeline: [
+            {
+              timestamp: "00:00-00:05",
+              hook: "A woman is standing in front of a desk with a large box labeled 'monitor upgrade.'",
+              cameraDetails: { movement: "static", angle: "medium shot" },
+              textOverlay: "monitor upgrade",
+              action: "The woman is looking at the box with a surprised expression."
+            },
+            // Additional timeline entries would go here
+          ]
+        })
+      }).toString()
+      
+      router.push(`/dashboard/script-result?${queryParams}`)
+    })()
   }
 
   return (
