@@ -28,21 +28,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
       </div>
       <nav className="space-y-2 flex-grow">
       <Button
-          variant={pathname === '/dashboard/scripts' ? 'secondary' : 'ghost'}
-          className="w-full justify-start"
-          asChild
-        >
-          <Link href="/dashboard/scripts">
-            <FileText className="mr-2 h-4 w-4" />
-            Scripts
-          </Link>
-        </Button>
-        <Button
           variant={pathname === '/dashboard' ? 'secondary' : 'ghost'}
           className="w-full justify-start"
           asChild
         >
           <Link href="/dashboard">
+            <FileText className="mr-2 h-4 w-4" />
+            Scripts
+          </Link>
+        </Button>
+        <Button
+          variant={pathname === '/dashboard/analytics' ? 'secondary' : 'ghost'}
+          className="w-full justify-start"
+          asChild
+        >
+          <Link href="/dashboard/analytics">
             <LayoutDashboard className="mr-2 h-4 w-4" />
             Analytics
           </Link>
