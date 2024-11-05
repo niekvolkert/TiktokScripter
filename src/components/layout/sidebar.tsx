@@ -27,6 +27,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
         </div>
       </div>
       <nav className="space-y-2 flex-grow">
+      <Button
+          variant={pathname === '/dashboard/scripts' ? 'secondary' : 'ghost'}
+          className="w-full justify-start"
+          asChild
+        >
+          <Link href="/dashboard/scripts">
+            <FileText className="mr-2 h-4 w-4" />
+            Scripts
+          </Link>
+        </Button>
         <Button
           variant={pathname === '/dashboard' ? 'secondary' : 'ghost'}
           className="w-full justify-start"
@@ -34,7 +44,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
         >
           <Link href="/dashboard">
             <LayoutDashboard className="mr-2 h-4 w-4" />
-            Dashboard
+            Analytics
           </Link>
         </Button>
         <Button
@@ -45,16 +55,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           <Link href="/dashboard/products">
             <Package className="mr-2 h-4 w-4" />
             Products
-          </Link>
-        </Button>
-        <Button
-          variant={pathname === '/dashboard/scripts' ? 'secondary' : 'ghost'}
-          className="w-full justify-start"
-          asChild
-        >
-          <Link href="/dashboard/scripts">
-            <FileText className="mr-2 h-4 w-4" />
-            Scripts
           </Link>
         </Button>
       </nav>
