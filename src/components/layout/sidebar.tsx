@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { LayoutDashboard, FileText, Package, LogOut, Settings } from 'lucide-react'
@@ -10,7 +11,9 @@ interface SidebarProps {
   setActiveTab: (tab: string) => void;
 }
 
-export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
+export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+  const pathname = usePathname()
+
   return (
     <aside className="w-64 bg-muted p-4 flex flex-col">
       <div className="flex items-center space-x-4 mb-6">
@@ -25,38 +28,46 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
       </div>
       <nav className="space-y-2 flex-grow">
         <Button
-          variant={activeTab === 'dashboard' ? 'secondary' : 'ghost'}
+          variant={pathname === '/dashboard' ? 'secondary' : 'ghost'}
           className="w-full justify-start"
-          onClick={() => setActiveTab('dashboard')}
+          asChild
         >
-          <LayoutDashboard className="mr-2 h-4 w-4" />
-          Dashboard
+          <Link href="/dashboard">
+            <LayoutDashboard className="mr-2 h-4 w-4" />
+            Dashboard
+          </Link>
         </Button>
         <Button
-          variant={activeTab === 'products' ? 'secondary' : 'ghost'}
+          variant={pathname === '/dashboard/products' ? 'secondary' : 'ghost'}
           className="w-full justify-start"
-          onClick={() => setActiveTab('products')}
+          asChild
         >
-          <Package className="mr-2 h-4 w-4" />
-          Products
+          <Link href="/dashboard/products">
+            <Package className="mr-2 h-4 w-4" />
+            Products
+          </Link>
         </Button>
         <Button
-          variant={activeTab === 'scripts' ? 'secondary' : 'ghost'}
+          variant={pathname === '/dashboard/scripts' ? 'secondary' : 'ghost'}
           className="w-full justify-start"
-          onClick={() => setActiveTab('scripts')}
+          asChild
         >
-          <FileText className="mr-2 h-4 w-4" />
-          Scripts
+          <Link href="/dashboard/scripts">
+            <FileText className="mr-2 h-4 w-4" />
+            Scripts
+          </Link>
         </Button>
       </nav>
       <div className="space-y-2">
         <Button
-          variant={activeTab === 'settings' ? 'secondary' : 'ghost'}
+          variant={pathname === '/settings' ? 'secondary' : 'ghost'}
           className="w-full justify-start"
-          onClick={() => setActiveTab('settings')}
+          asChild
         >
-          <Settings className="mr-2 h-4 w-4" />
-          Settings
+          <Link href="/settings">
+            <Settings className="mr-2 h-4 w-4" />
+            Settings
+          </Link>
         </Button>
         <Button variant="ghost" className="w-full justify-start" asChild>
           <Link href="/logout">
