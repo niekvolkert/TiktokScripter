@@ -27,147 +27,45 @@ Root Directory:
 
 .cursorrules – Custom rules for Cursor AI.
 .env – Store environment variables, including API keys and MongoDB connection strings.
-Frontend Directory (src/):
 
-📦 root
-├── .env.local
-├── .gitignore
-├── next.config.mjs
-├── package.json
-├── postcss.config.js
-├── tailwind.config.ts
-├── tsconfig.json
-├── middleware.ts
-│
-├── 📂 public/
-│   ├── 📂 images/
-│   │   └── logo.svg
-│   └── favicon.ico
-│
-├── 📂 src/
-│   ├── 📂 app/
-│   │   ├── layout.tsx                # Root layout
-│   │   ├── page.tsx                  # Home page (marketing)
-│   │   ├── error.tsx                 # Global error boundary
-│   │   ├── not-found.tsx            # Global 404
-│   │   ├── loading.tsx              # Global loading
-│   │   ├── template.tsx             # Root template
-│   │   │
-│   │   ├── 📂 (auth)/
-│   │   │   ├── login/
-│   │   │   │   ├── page.tsx
-│   │   │   │   └── @modal/
-│   │   │   │       └── default.tsx   # Parallel route for modal
-│   │   │   ├── register/
-│   │   │   │   └── page.tsx
-│   │   │   ├── forgot-password/
-│   │   │   │   └── page.tsx
-│   │   │   └── layout.tsx
-│   │   │
-│   │   ├── 📂 (marketing)/
-│   │   │   ├── pricing/
-│   │   │   │   └── page.tsx
-│   │   │   ├── about/
-│   │   │   │   └── page.tsx
-│   │   │   └── layout.tsx
-│   │   │
-│   │   ├── 📂 (dashboard)/
-│   │   │   ├── layout.tsx
-│   │   │   ├── page.tsx
-│   │   │   │
-│   │   │   ├── 📂 products/
-│   │   │   │   ├── page.tsx
-│   │   │   │   ├── loading.tsx
-│   │   │   │   ├── error.tsx
-│   │   │   │   ├── not-found.tsx
-│   │   │   │   └── [id]/
-│   │   │   │       └── page.tsx
-│   │   │   │
-│   │   │   └── 📂 scripts/
-│   │   │       ├── page.tsx
-│   │   │       ├── loading.tsx
-│   │   │       ├── error.tsx
-│   │   │       └── [id]/
-│   │   │           └── page.tsx
-│   │   │
-│   │   └── 📂 api/
-│   │       ├── 📂 auth/
-│   │       │   └── [...nextauth]/
-│   │       │       └── route.ts
-│   │       ├── 📂 products/
-│   │       │   ├── route.ts
-│   │       │   └── [id]/
-│   │       │       └── route.ts
-│   │       └── 📂 scripts/
-│   │           ├── route.ts
-│   │           └── [id]/
-│   │               └── route.ts
-│   │
-│   ├── 📂 components/
-│   │   ├── 📂 ui/                    # shadcn/ui components
-│   │   │   ├── button.tsx
-│   │   │   ├── input.tsx
-│   │   │   ├── dialog.tsx
-│   │   │   └── form.tsx
-│   │   │
-│   │   ├── 📂 auth/
-│   │   │   ├── auth-form.tsx
-│   │   │   └── user-button.tsx
-│   │   │
-│   │   ├── 📂 dashboard/
-│   │   │   ├── nav.tsx
-│   │   │   ├── header.tsx
-│   │   │   └── sidebar.tsx
-│   │   │
-│   │   ├── 📂 products/
-│   │   │   ├── product-card.tsx
-│   │   │   ├── product-form.tsx
-│   │   │   └── product-list.tsx
-│   │   │
-│   │   ├── 📂 scripts/
-│   │   │   ├── script-generator.tsx
-│   │   │   └── script-preview.tsx
-│   │   │
-│   │   └── 📂 marketing/
-│   │       ├── pricing-table.tsx
-│   │       └── feature-list.tsx
-│   │
-│   ├── 📂 lib/
-│   │   ├── 📂 actions/              # Server Actions
-│   │   │   ├── products.ts
-│   │   │   └── scripts.ts
-│   │   │
-│   │   ├── 📂 auth/
-│   │   │   └── auth.ts
-│   │   │
-│   │   ├── 📂 db/                   # Database utilities
-│   │   │   └── index.ts
-│   │   │
-│   │   └── utils.ts
-│   │
-│   ├── 📂 types/
-│   │   ├── index.d.ts
-│   │   └── next-auth.d.ts
-│   │
-│   ├── 📂 config/
-│   │   ├── site.ts
-│   │   └── nav.ts
-│   │
-│   └── 📂 styles/
-│       └── globals.css
-│
-├── 📂 prisma/                        # Database ORM
-│   ├── schema.prisma
-│   └── migrations/
-│
-├── 📂 scripts/                       # Build/deployment scripts
-│   └── seed.ts
-│
-└── 📂 tests/
-    ├── 📂 integration/
-    │   └── api.test.ts
-    └── 📂 unit/
-        └── components.test.ts
+### **Folder Structure**
+
+1. **Root Directory**:
+    - `.cursorrules` – Custom rules for Cursor AI.
+    - `.env` – Store environment variables, including API keys and MongoDB connection strings.
+2. **Frontend Directory (`src/`)**:
+    - **`components/`**:
+        - `OnboardingForm.js` – Component for onboarding fields.
+        - `Dashboard.js` – Main hub for accessing other pages and showing the “Create Script” button.
+        - `ProductManager.js` – Lists and manages user products.
+        - `ScriptGenerator.js` – Script generation form, including TikTok URL input and product dropdown.
+    - **`pages/`**:
+        - `HomePage.js` – Marketing website homepage.
+        - `LoginPage.js` – Authentication page for login.
+        - `DashboardPage.js` – Dashboard container.
+        - `ProductPage.js` – Product management page.
+        - `ScriptPage.js` – Page for script generation.
+    - **`hooks/`**:
+        - `useFetchProducts.js` – Custom hook to fetch products.
+        - `useGenerateScript.js` – Custom hook to handle script generation.
+    - **`utils/`**:
+        - `api.js` – Helper functions for API calls.
+        - `auth.js` – Authentication-related utilities.
+3. **Backend Directory (`backend/`)**:
+    - **`models/`**:
+        - `User.js` – MongoDB schema for user profiles.
+        - `Product.js` – Schema for product information.
+        - `Script.js` – Schema for generated scripts.
+    - **`routes/`**:
+        - `auth.js` – User authentication routes.
+        - `products.js` – Routes for product CRUD operations.
+        - `scripts.js` – Routes for handling script generation requests.
+    - **`controllers/`**:
+        - `authController.js` – Handles login, registration, and authentication.
+        - `productController.js` – Manages product-related logic.
+        - `scriptController.js` – Controls script generation and interaction with AI APIs.
+    - **`middleware/`**:
+        - `authMiddleware.js` – Auth middleware to secure paywalled routes.
 
 
 Naming Conventions
